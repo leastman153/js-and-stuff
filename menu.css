@@ -1,0 +1,33 @@
+#menu {
+  display: flex;
+  -webkit-display: flex;
+
+  flex-flow: column nowrap;
+
+  justify-content: space-around;
+
+  position: relative;
+  margin: 200px auto;
+  padding: 25px 0;
+  width: 20%;
+  border: 2.5px solid gray;
+}
+
+#stuff {
+  /*display: none;*/
+  width: 50%;
+  margin: 0 auto;
+}
+
+.option {
+  margin: 0 auto;
+  width: 75%;
+  text-align: center;
+  color: red;
+  border: 2.5px solid gray;
+}
+
+.option:hover {
+  color: white;
+  background-color: red;
+}

@@ -2,6 +2,30 @@
 //   alert("Test");
 // }
 
+var loadCount = 0;
+function load() {
+  menu.innerHTML = "";
+  var loadBox = document.createElement("div");
+  loadBox.width = "50%";
+  loadBox.style.margin = "0 auto";
+  var loadPara = document.createElement("p");
+  loadPara.textContent = "Loading.";
+  loadBox.appendChild(loadPara);
+  menu.appendChild(loadBox);
+  var count = 1;
+  setInterval(function() {
+    count++;
+    if(count === 4) {
+      count = 1;
+      loadCount++;
+    }
+    loadPara.textContent = "Loading";
+    for(var i = 1; i <= count; i++) {
+      loadPara.textContent += ".";
+    }
+  }, 1000);
+}
+
 var menu = document.getElementById("menu");
 var playButton = document.getElementById("playButton");
 playButton.addEventListener("click", function() {
@@ -14,7 +38,12 @@ playButton.addEventListener("click", function() {
   nameForm.appendChild(nameLabel);
   var nameInput = document.createElement("input");
   nameInput.id = "name";
-  nameInput.width = "50%";
+  // nameInput.width = "50%";
   nameForm.appendChild(nameInput);
+  nameForm.style.display = "flex";
+  nameForm.style.flexFlow = "column wrap";
+  nameForm.style.alignItems = "center";
+  nameForm.action = "index.html";
+  nameForm.addEventListener("submit", load);
   menu.appendChild(nameForm);
 });

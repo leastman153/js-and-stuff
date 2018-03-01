@@ -2,8 +2,30 @@
 //   alert("Test");
 // }
 
+var menu = document.getElementById("menu");
+var playButton = document.getElementById("playButton");
 var loadCount = 0;
+
+function changeToInput() {
+  var five = document.getElementById("five");
+  var fivePara = five.removeChild(document.getElementById("fivePara"));
+  var fiveInput = document.createElement("input");
+  fiveInput.type = "number";
+  fiveInput.width = "25px";
+  fiveInput.value = "-15";
+  five.appendChild(fiveInput);
+}
+
+function clearInt(int) {
+  clearInterval(int);
+  load();
+}
+
 function load() {
+  menu.innerHTML = "";
+}
+
+function loading() {
   menu.innerHTML = "";
   var loadBox = document.createElement("div");
   loadBox.width = "50%";
@@ -13,7 +35,7 @@ function load() {
   loadBox.appendChild(loadPara);
   menu.appendChild(loadBox);
   var count = 1;
-  setInterval(function() {
+  var int = setInterval(function() {
     count++;
     if(count === 4) {
       count = 1;
@@ -23,11 +45,12 @@ function load() {
     for(var i = 1; i <= count; i++) {
       loadPara.textContent += ".";
     }
+    if(loadCount === 2) {
+      clearInt(int);
+    }
   }, 1000);
 }
 
-var menu = document.getElementById("menu");
-var playButton = document.getElementById("playButton");
 playButton.addEventListener("click", function() {
   menu.innerHTML = "";
   var nameForm = document.createElement("form");
@@ -44,6 +67,9 @@ playButton.addEventListener("click", function() {
   nameForm.style.flexFlow = "column wrap";
   nameForm.style.alignItems = "center";
   nameForm.action = "index.html";
-  nameForm.addEventListener("submit", load);
+  $("#nameForm").css({
+    "disply":"none"
+  });
+  nameForm.addEventListener("submit", loading);
   menu.appendChild(nameForm);
 });

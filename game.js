@@ -22,7 +22,7 @@ function clearInt(int) {
 }
 
 function load() {
-  menu.innerHTML = "";
+  document.body.removeChild(document.getElementById("menu"));
 }
 
 function loading() {
